@@ -1,0 +1,75 @@
+group 'com.sample'
+version '1.0-SNAPSHOT'
+
+apply plugin: 'java'
+apply plugin: 'application'
+apply plugin: 'idea'
+
+sourceCompatibility = 1.8
+
+mainClassName = 'com.sample.cwi.SparkService'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+
+    compile group: 'com.sparkjava', name: 'spark-core', version: '2.7.2'
+    compile group: 'org.picocontainer', name: 'picocontainer', version: '2.15'
+    compile group: 'org.slf4j', name: 'slf4j-log4j12', version: '1.7.30'
+
+    testCompile group: 'junit', name: 'junit', version: '4.12'
+}
+
+run {
+    args 'server', 'config/car-warehouse-ui.yml'
+}
+
+sourceSets {
+    test {
+        java {
+            srcDirs = ['src/test/java']
+        }
+
+        resources {
+            srcDirs = ['config']
+        }
+    }
+
+    unitTest {
+        java {
+            srcDirs = ['src/test/java/unit']
+        }
+
+        resources {
+            srcDirs = ['config']
+        }
+    }
+
+    functionalTest {
+        java {
+            srcDirs = ['src/test/java/functional']
+        }
+        resources {
+            srcDirs = ['config']
+        }
+    }
+
+}
+
+
+/*pitest {
+    //TODO: pitest yet to be added
+}
+
+dependencyCheck {
+    //TODO: dependencyCheck yet to be added
+}
+
+testCoverage {
+    // TODO: testCoverage yet to be added
+}
+
+*/
+
