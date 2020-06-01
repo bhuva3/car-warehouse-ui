@@ -10,6 +10,7 @@ import spark.ModelAndView;
 import spark.TemplateViewRoute;
 import spark.template.freemarker.FreeMarkerEngine;
 
+import java.util.HashMap;
 import java.util.Map;
 
 import static com.sample.cwi.SparkService.service;
@@ -19,29 +20,46 @@ public class CommonRoute {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(CommonRoute.class);
 
-    private PropertiesManager propertiesManager;
     private CommonRouteHandler commonRouteHandler;
     private FreeMarkerEngine freeMarkerEngine;
-    private CsrfFilter csrfFilter;
 
-    public CommonRoute(PropertiesManager propertiesManager, CommonRouteHandler commonRouteHandler, FreeMarkerEngine freeMarkerEngine, CsrfFilter csrfFilter) {
-        this.propertiesManager = propertiesManager;
+
+    public CommonRoute(CommonRouteHandler commonRouteHandler, FreeMarkerEngine freeMarkerEngine) {
         this.commonRouteHandler = commonRouteHandler;
         this.freeMarkerEngine = freeMarkerEngine;
-        this.csrfFilter = csrfFilter;
     }
 
     private TemplateViewRoute viewCarListRoute = (request, response) -> {
         LOGGER.info("Invoking viewCarListRoute");
         SessionData sessionData = getSessionData(request, false);
+        if(sessionData == null) {
+            sessionData = getSessionData(request, true);
+        }
+
         Map<String, Object> responseMap = commonRouteHandler.handleVehicleList();
+        responseMap.put("sessionData", sessionData);
+        //TODO : pagination to be added
         return new ModelAndView(responseMap, "common-page.ftl");
     };
 
+    private TemplateViewRoute viewDetailsRoute = (request, response) -> {
+        LOGGER.info("Invoking viewDetailsRoute");
+        SessionData sessionData = getSessionData(request, false);
+        String vehicleId = request.queryParams("vehicleId");
+
+        Map<String, Object> responseMap = commonRouteHandler.handleViewDetails(vehicleId);
+        responseMap.put("sessionData", sessionData);
+        return new ModelAndView(responseMap, "common-page.ftl");
+    };
 
     public void setUpRoutes(){
 
         service.get("/open/home", viewCarListRoute, freeMarkerEngine);
+
+        service.post("/open/viewdetails", viewDetailsRoute, freeMarkerEngine);
+
+        // Not enough time to implement post redirect get so simply redirecting on home page
+        service.get("/open/viewdetails", viewCarListRoute, freeMarkerEngine);
     }
 
 }

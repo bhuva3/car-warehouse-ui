@@ -47,8 +47,8 @@ public class CsrfFilter {
             if(requestCsrf == null || sessionCsrf == null || !requestCsrf.equalsIgnoreCase(sessionCsrf)){
                 LOGGER.warn("CsrfToken validation failed");
                 Map<String, Object> responseMpa = new HashMap<>();
-                responseMpa.put("body", "/spark/template/freemarker/errors/generic-error.ftl");
-                halt(401, freeMarkerEngine.render(new ModelAndView(responseMpa, "spark/template/freemarker/common-page.ftl")));
+                responseMpa.put("body", "/errors/generic-error.ftl");
+                halt(401, freeMarkerEngine.render(new ModelAndView(responseMpa, "common-page.ftl")));
             }
         }
     }

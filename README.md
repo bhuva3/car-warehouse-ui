@@ -69,21 +69,21 @@ gradlew test
 
 ### Run pitest
 
-To run pitest, use below mentioned command
+To run pitest, use below mentioned command (TBA)
 ```
 gradlew pitest
 ```
 
 ### Run functional test
 
-To run functional test, use below mentioned command
+To run functional test, use below mentioned command (TBA)
 ```
 gradlew functionalTest
 ```
 
 ### Test coverage
 
-To run test coverage, run below command
+To run test coverage, run below command (TBA)
 
 ```
 gradlew testCoverage
@@ -91,7 +91,7 @@ gradlew testCoverage
 
 ### Build vulnerability check
 
-To make sure library we used in service not containing any vulnerability. Please run below task
+To make sure library we used in service not containing any vulnerability. Please run below task (TBA)
 
 ```
 gradlew dependencyCheck

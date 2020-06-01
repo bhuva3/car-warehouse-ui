@@ -7,6 +7,8 @@ import com.sample.cwi.clients.CarWarehouseClient;
 import com.sample.cwi.config.PropertiesManager;
 import com.sample.cwi.domains.Car;
 import com.sample.cwi.domains.Vehicle;
+import com.sample.cwi.domains.Warehouse;
+import org.apache.http.HttpEntity;
 import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.util.EntityUtils;
 import org.slf4j.Logger;
@@ -37,11 +39,52 @@ public class CommonRouteHandler {
         String carWarehouseServiceUrl = propertiesManager.getStringProperty("carWarehouseServiceUrl");
 
         LOGGER.info("Calling carWarehouseService to getVehicleDetailList");
-        vehicleList = carWarehouseClient.getHttpResponse(carWarehouseServiceUrl + "/getVehicleDetailList");
+        String httpEntityString = carWarehouseClient.getHttpResponse(carWarehouseServiceUrl + "/getVehicleDetailList/");
+        vehicleList = getExtractVehicleList(httpEntityString);
         responseMap.put("vehicleList", vehicleList);
         responseMap.put("body", "/pages/view-vehicle-list.ftl");
         return responseMap;
     }
+
+    public Map<String, Object> handleViewDetails(String vehicleId) {
+
+        Map<String, Object> responseMap = new HashMap<>();
+        Warehouse warehouse;
+        String carWarehouseServiceUrl = propertiesManager.getStringProperty("carWarehouseServiceUrl");
+
+        LOGGER.info("Calling carWarehouseService to getVehicleDetails");
+        String httpEntityString = carWarehouseClient.getHttpResponse(carWarehouseServiceUrl + "/getVehicleDetails/" + vehicleId);
+        warehouse = getExtractVehicleDetails(httpEntityString);
+        responseMap.put("warehouse", warehouse);
+        responseMap.put("body", "/pages/view-details.ftl");
+        return responseMap;
+    }
+
+    private List<Vehicle> getExtractVehicleList(String httpEntityString) {
+        List<Vehicle> vehicleList = new ArrayList<>();
+        if(httpEntityString != null){
+            try {
+                vehicleList = new ObjectMapper().readValue(httpEntityString, new TypeReference<List<Vehicle>>() {});
+            } catch (IOException e) {
+                LOGGER.error("Exception occurred while parsing vehicleList return by carWarehouseService", e);
+            }
+        }
+        return vehicleList;
+    }
+
+    private Warehouse getExtractVehicleDetails(String httpEntityString) {
+        Warehouse warehouse = null;
+        if(httpEntityString != null){
+            try {
+                warehouse = new ObjectMapper().readValue(httpEntityString, new TypeReference<Warehouse>() {});
+            } catch (IOException e) {
+                LOGGER.error("Exception occurred while parsing vehicle details return by carWarehouseService", e);
+            }
+        }
+        return warehouse;
+    }
+
+
 
 
 }

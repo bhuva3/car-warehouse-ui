@@ -18,7 +18,7 @@ public class SessionUtil {
         }
 
         // to create & return fresh session
-        if(sessionData != null && createSession){
+        if(sessionData == null && createSession){
             sessionData = new SessionData();
             sessionData.setCsrfToken(sessionData.getSessionId());
             request.session(true).attribute(SESSION, sessionData);

@@ -4,7 +4,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.time.LocalDate;
 
-public class Vehicle extends Car{
+public class Vehicle {
 
     @JsonProperty("_id")
     private long id;
@@ -96,8 +96,8 @@ public class Vehicle extends Car{
         this.strDateAdded = strDateAdded;
     }
 
-    public LocalDate getDateAdded() {
-        return LocalDate.parse(getStrDateAdded());
+    public String getDateAdded() {
+        return getStrDateAdded();
     }
 
     public void setDateAdded(String dateAdded) {

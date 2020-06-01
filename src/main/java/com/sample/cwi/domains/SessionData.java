@@ -29,6 +29,7 @@ public class SessionData implements Serializable {
         this.csrfToken = csrfToken;
     }
 
+
     @Override
     public String toString() {
         return "SessionData{" +
