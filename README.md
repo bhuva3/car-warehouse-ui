@@ -2,6 +2,10 @@
 
 This service developed using SparkJava web framework, Main purpose of this service is to enable great user interface for car warehouse users 
 
+Below is url to access service
+
+    http://localhost:4567/open/home
+    
 
 ### Prerequisites to run service
 
@@ -9,6 +13,18 @@ Need below listed software/package installed on machine to run this service
 
     Java 8
     MongoDB
+
+Create required user in mongoDB admin datastore, also created datastore with name HttpSessionDatastore
+
+    use admin
+    db.createUser(
+    {
+        user: "httpsessiondbuser",
+        pwd: "password"
+        roles: [ "readWrite", "dbAdmin" ]
+    }
+    )
+    
 
 ### Interaction with other services
 
@@ -48,7 +64,7 @@ gradlew clean build run
 
 To run unit test, use below mentioned command
 ```
-gradlew unitTest
+gradlew test
 ```
 
 ### Run pitest

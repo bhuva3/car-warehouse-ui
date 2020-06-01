@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.sample.cwi.handlers.CommonRouteHandlerTest" tests="2" skipped="0" failures="0" errors="0" timestamp="2020-06-01T12:49:43" hostname="bhuva" time="1.295">
+  <properties/>
+  <testcase name="shouldReturnValidResponseMapWithoutAnyException" classname="com.sample.cwi.handlers.CommonRouteHandlerTest" time="1.291"/>
+  <testcase name="shouldThrowValidResponseMapWithoutAnyException" classname="com.sample.cwi.handlers.CommonRouteHandlerTest" time="0.002"/>
+  <system-out><![CDATA[2020-06-01 13:49:44 INFO  CommonRouteHandler:39 - Calling carWarehouseService to getVehicleDetailList
+2020-06-01 13:49:44 INFO  CommonRouteHandler:39 - Calling carWarehouseService to getVehicleDetailList
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

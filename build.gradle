@@ -15,11 +15,18 @@ repositories {
 
 dependencies {
 
-    compile group: 'com.sparkjava', name: 'spark-core', version: '2.7.2'
+    compile files('libs/spark-core-2.6.1-SNAPSHOT.jar')
+    compile group: 'org.eclipse.jetty', name: 'jetty-nosql', version: '9.4.4.v20170414'
     compile group: 'org.picocontainer', name: 'picocontainer', version: '2.15'
     compile group: 'org.slf4j', name: 'slf4j-log4j12', version: '1.7.30'
+    compile group: 'com.sparkjava', name: 'spark-template-freemarker', version: '2.7.1'
+    compile group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: '2.9.4'
+    compile group: 'org.apache.httpcomponents', name: 'httpclient', version: '4.5.10'
+
 
     testCompile group: 'junit', name: 'junit', version: '4.12'
+    testCompile group: 'org.mockito', name: 'mockito-core', version: '3.3.3'
+
 }
 
 run {
@@ -39,7 +46,7 @@ sourceSets {
 
     unitTest {
         java {
-            srcDirs = ['src/test/java/unit']
+            srcDirs = ['src/test/java']
         }
 
         resources {
@@ -54,6 +61,8 @@ sourceSets {
         resources {
             srcDirs = ['config']
         }
+
+        //TODO: selenium functional test to be added
     }
 
 }

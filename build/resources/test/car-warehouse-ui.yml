@@ -2,3 +2,11 @@
 appPort: 4567
 
 adminPort: 4568
+
+httpSessionDatastoreUrl: mongodb://httpsessiondbuser:password@127.0.0.1:27017/?authSource=admin
+httpSessionDatastore: HttpSessionDatastore
+httpSessionCollection: JettySessions
+scavengeInterval: 10
+clusterNode: node-01
+
+carWarehouseServiceUrl: http://localhost:50010

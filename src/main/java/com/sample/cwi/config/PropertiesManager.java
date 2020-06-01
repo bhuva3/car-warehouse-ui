@@ -14,4 +14,8 @@ public class PropertiesManager {
         return Integer.parseInt(properties.getProperty(key));
     }
 
+    public String getStringProperty(String key){
+        return properties.getProperty(key);
+    }
+
 }
