@@ -30,8 +30,8 @@
     </div>
     <div class="collapse navbar-collapse" id="myNavbar">
       <ul class="nav navbar-nav">
-        <li class="active"><a href="/open/home">Cars</a></li>
-        <li><a href="#">Add Car</a></li>
+        <li ><a href="/open/home">Cars</a></li>
+        <li><a href="/open/viewcart">View Cart</a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <li><a href="#"><span class="glyphicon glyphicon-user"></span> Your Account</a></li>

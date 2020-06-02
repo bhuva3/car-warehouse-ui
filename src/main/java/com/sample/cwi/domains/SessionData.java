@@ -1,6 +1,8 @@
 package com.sample.cwi.domains;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
 public class SessionData implements Serializable {
@@ -8,6 +10,7 @@ public class SessionData implements Serializable {
     private static final long serialVersionUID = 124583399412571615L;
     private String sessionId;
     private String csrfToken;
+    private List<CartDetail> cartDetailList;
 
     public SessionData() {
         this.sessionId = UUID.randomUUID().toString();
@@ -29,6 +32,13 @@ public class SessionData implements Serializable {
         this.csrfToken = csrfToken;
     }
 
+    public List<CartDetail> getCartDetailList() {
+        return cartDetailList;
+    }
+
+    public void setCartDetailList(List<CartDetail> cartDetailList) {
+        this.cartDetailList = cartDetailList;
+    }
 
     @Override
     public String toString() {

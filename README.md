@@ -20,7 +20,7 @@ Create required user in mongoDB admin datastore, also created datastore with nam
     db.createUser(
     {
         user: "httpsessiondbuser",
-        pwd: "password"
+        pwd: "password",
         roles: [ "readWrite", "dbAdmin" ]
     }
     )

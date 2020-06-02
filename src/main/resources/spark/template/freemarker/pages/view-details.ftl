@@ -13,6 +13,7 @@
         <th>Added date</th>
         <th>Car location</th>
         <th>Warehouse name</th>
+        <th>Add to Cart</th>
       </tr>
     </thead>
     <tbody>
@@ -26,6 +27,16 @@
         <td>${(warehouse.cars.vehicles[0].dateAdded)!}</td>
         <td>${(warehouse.cars.carLocation)!}</td>
         <td>${(warehouse.name)!}</td>
+        <td>
+        <form name="frmViewDetails" id="frmViewDetails" action="/open/addtocart" method="post">
+            <input type="hidden" id="vehicleId" name="vehicleId" value="${(warehouse.cars.vehicles[0].id)!}" />
+            <input type="hidden" id="csrfToken" name="csrfToken" value="${(sessionData.csrfToken)!?html}" />
+            <input type="hidden" id="vehicleMake" name="vehicleMake" value="${(warehouse.cars.vehicles[0].make)!}" />
+            <input type="hidden" id="vehicleModel" name="vehicleModel" value="${(warehouse.cars.vehicles[0].model)!}" />
+            <input type="hidden" id="vehiclePrice" name="vehiclePrice" value="${warehouse.cars.vehicles[0].price?string.computer!}" />
+            <button type="submit" class="btn btn-default">Add to Cart</button>
+        </form>
+        </td>
       </tr>
 
       <#else>

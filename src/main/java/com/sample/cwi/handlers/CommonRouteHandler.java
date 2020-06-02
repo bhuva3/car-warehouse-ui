@@ -60,6 +60,13 @@ public class CommonRouteHandler {
         return responseMap;
     }
 
+    public Map<String,Object> handleViewCart() {
+        Map<String, Object> responseMap = new HashMap<>();
+
+        responseMap.put("body", "/pages/view-cart.ftl");
+        return responseMap;
+    }
+
     private List<Vehicle> getExtractVehicleList(String httpEntityString) {
         List<Vehicle> vehicleList = new ArrayList<>();
         if(httpEntityString != null){
@@ -83,8 +90,4 @@ public class CommonRouteHandler {
         }
         return warehouse;
     }
-
-
-
-
 }

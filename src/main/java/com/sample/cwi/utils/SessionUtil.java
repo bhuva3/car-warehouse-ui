@@ -3,6 +3,8 @@ package com.sample.cwi.utils;
 import com.sample.cwi.domains.SessionData;
 import spark.Request;
 
+import java.util.ArrayList;
+
 public class SessionUtil {
 
     public static final String SESSION = "SESSION";
@@ -21,6 +23,7 @@ public class SessionUtil {
         if(sessionData == null && createSession){
             sessionData = new SessionData();
             sessionData.setCsrfToken(sessionData.getSessionId());
+            sessionData.setCartDetailList(new ArrayList<>());
             request.session(true).attribute(SESSION, sessionData);
             request.attribute(CSRF_TOKEN, sessionData.getSessionId());
             request.session(false).maxInactiveInterval(MAX_INACTIVE_INTERVAL);

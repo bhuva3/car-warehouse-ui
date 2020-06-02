@@ -1,2 +1,2 @@
-g2020-06-01 13:49:44 INFO  CommonRouteHandler:39 - Calling carWarehouseService to getVehicleDetailList
-g2020-06-01 13:49:44 INFO  CommonRouteHandler:39 - Calling carWarehouseService to getVehicleDetailList
+d2020-06-02 16:48:09 INFO  CommonRouteHandler:55 - Calling carWarehouseService to getVehicleDetails
+g2020-06-02 16:48:09 INFO  CommonRouteHandler:41 - Calling carWarehouseService to getVehicleDetailList
